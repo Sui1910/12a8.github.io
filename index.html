@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            background-image: url(https://preview.redd.it/2-0-new-login-background-screen-in-4k-v0-k9734zd36sae1.png?width=640&crop=smart&auto=webp&s=447efc731776e2c86365596920e9ac315596e3dc);
+            background-repeat: no-repeat;
+            background-size: cover ;
+            background-attachment:fixed ;   
+    
+        }
+        
+     body::before {
+        content: "";
+        position: fixed; 
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(255, 255, 255, 0.5); /* 50% đen phủ lên */
+        z-index: 1; /* z-index lớn hơn thì nằm trên cái nhỏ hơn */
+        backdrop-filter: blur(5px); /* làm mờ nền phía sau */
+}
+
+        body * {
+            position : relative ;
+            z-index : 2;
+    }
+        .container {        
+            width: 450px;
+            margin: 30px auto;  
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+        }
+        
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 12px;
+            color: #444;
+        }
+
+        #text,
+        #ngaysinh,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        #gioitinh,
+        #box {
+            margin-top: 10px;
+            margin-right: 5px;
+        }
+
+        .gender, .subject {
+            margin-left: 20px;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            text-align: center;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+
+        }
+
+        .btn:hover {    
+            background: #0056b3;    
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Đăng kí môn thi tốt nghiệp</h2>
+
+    <label>Họ và tên:
+        <input type="text" name="hoten" id="text">
+    </label>
+
+    <label>CCCD:
+        <input type="text" name="cccd" id="text">
+    </label>
+
+    <label>Ngày sinh:
+        <input type="date" name="ngaysinh" id="ngaysinh">
+    </label>
+
+    <label>Giới tính:</label>
+    <div class="gender">
+        <input type="radio" name="gioitinh" value="nam" id="gioitinh" > Nam
+        <input type="radio" name="gioitinh" value="nu" id="gioitinh" > Nữ
+    </div>
+
+    <label>Môn thi:</label>
+    <div class="subject">
+        <div>
+        <label>Môn bắt buộc:</label>
+        <label>
+        <input type="checkbox"> Toán
+        </label>
+        <label>
+        <input type="checkbox"> Văn
+        </label>
+        </div>
+
+        <div>
+           <label>Môn tự chọn :</label>
+
+            <select id="mon1">
+            <option value="">-- Chọn môn --</option>
+            <option value="ngoai-ngu">Ngoại ngữ</option>
+            <option value="tin">Tin</option>
+            <option value="su">Sử</option>
+            <option value="dia">Địa</option>
+            <option value="hoa">Hoá</option>
+            <option value="ly">Lý</option>
+            <option value="sinh">Sinh</option>
+            <option value="ktpl">KTPL</option>
+            <option value="cn">Công nghệ</option>
+            </select>
+
+            <select id="mon2">
+            <option value="">-- Chọn môn --</option>
+            <option value="ngoai-ngu">Ngoại ngữ</option>
+            <option value="tin">Tin</option>
+            <option value="su">Sử</option>
+            <option value="dia">Địa</option>
+            <option value="hoa">Hoá</option>
+            <option value="ly">Lý</option>
+            <option value="sinh">Sinh</option>
+            <option value="ktpl">KTPL</option>
+            <option value="cn">Công nghệ</option>
+            </select>
+
+        </div>
+    </div>
+    <label>Tổ hợp:
+        <select name="tohop" id="tohop">
+            <option>Tự nhiên</option>
+            <option>Xã hội</option>
+        </select>
+    </label>
+
+    <button class="btn">Gửi thông tin</button>
+</div>
+<script>
+const mon1 = document.getElementById("mon1");
+const mon2 = document.getElementById("mon2");
+
+function updateSelect(changed, target) {
+  const value = changed.value;
+
+  [...target.options].forEach(option => {
+    option.hidden = option.value === value && value !== "";
+  });
+}
+
+mon1.addEventListener("change", () => updateSelect(mon1, mon2));
+mon2.addEventListener("change", () => updateSelect(mon2, mon1));
+</script>
+
+</body>
+</html>
